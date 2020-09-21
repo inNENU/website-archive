@@ -42,6 +42,19 @@ const optimization = {
  * @returns {void}
  */
 const configureWebpack = (config) => {
+  const myaliasconfig = {
+    "|": path.resolve(__dirname, "src/assets/"),
+    "#": path.resolve(__dirname, "src/components/"),
+    "%": path.resolve(__dirname, "src/utils/"),
+  };
+
+  config.resolve.alias = { ...(config.resolve.alias || {}), ...myaliasconfig }; // 配置解析别名，可以简写
+  config.resolve.extensions = [
+    // 配置解析扩展
+    ...(config.resolve.extensions || []),
+    ".svg",
+  ];
+
   // 配置模块解析方式，可加快解析速度
   config.resolve.modules = [path.resolve(__dirname, "src"), "node_modules"];
 
@@ -98,6 +111,18 @@ module.exports = {
   productionSourceMap: false,
   crossorigin: "anonymous",
   configureWebpack,
+  chainWebpack: (config) => {
+    const svgRule = config.module.rule("svg");
+
+    svgRule.uses.clear();
+
+    svgRule
+      .use("babel-loader")
+      .loader("babel-loader")
+      .end()
+      .use("vue-svg-loader")
+      .loader("vue-svg-loader");
+  },
   devServer: {
     compress: true, // 启用 gzip 压缩
     // 浮层

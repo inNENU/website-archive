@@ -35,7 +35,10 @@
     "strictPropertyInitialization": true,
     "target": "esnext",
     "paths": {
-      "@/*": ["src/*"]
+      "@/*": ["src/*"],
+      "|/*": ["src/assets/*"],
+      "#/*": ["src/components/*"],
+      "%/*": ["src/utils/*"]
     }
   },
   "include": [
