@@ -1,18 +1,14 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="~@/assets/logo.png" />
-    <HelloWorld msg="欢迎来到你的 Vue3 with TS APP" />
+    <h1>主页</h1>
+    <div style="height: 150vh"></div>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import HelloWorld from "@/components/HelloWorld.vue"; // @ is an alias to /src
 
 export default defineComponent({
   name: "Home",
-  components: {
-    HelloWorld,
-  },
 });
 </script>

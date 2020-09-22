@@ -116,9 +116,12 @@ module.exports = {
 
     svgRule.uses.clear();
 
+    svgRule.uses.clear();
+
     svgRule
-      .use("babel-loader")
-      .loader("babel-loader")
+      .use("vue-loader")
+      // vue-loader is still in beta
+      .loader("vue-loader-v16")
       .end()
       .use("vue-svg-loader")
       .loader("vue-svg-loader");
