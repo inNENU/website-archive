@@ -1,0 +1,24 @@
+@mixin weui {
+  width: 100%;
+  min-height: 100%;
+  background-color: #f8f8f8;
+
+  text-align: center;
+  font-family: "Helvetica Neue", FZKTJW, -apple-system-font, "PingFang SC",
+    Helvetica, STHeiti, Tahoma, Simsun, sans-serif !important;
+}
+
+.weui {
+  @include weui;
+
+  @media (prefers-color-scheme: dark) {
+    background-color: #000;
+    color: #fff;
+  }
+}
+.weui.grey {
+  @media (prefers-color-scheme: dark) {
+    background-color: #10110b;
+    color: #fff;
+  }
+}

@@ -5,10 +5,7 @@ import { FooterComponentConfig } from "./footer";
 import { GridComponentConfig } from "./grid";
 import { ImageComponentConfig } from "./img";
 import { IntroComponentConfig } from "./intro";
-import {
-  AdvancedListComponentConfig,
-  ListComponentConfig,
-} from "./list";
+import { AdvancedListComponentConfig, ListComponentConfig } from "./list";
 import { MediaComponentConfig } from "./media";
 import { PhoneComponentConfig } from "./phone";
 import { SwiperComponentConfig } from "./swiper";

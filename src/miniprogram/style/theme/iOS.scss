@@ -1,0 +1,44 @@
+@mixin iOS {
+  width: 100%;
+  min-height: 100%;
+
+  color: var(--text-color);
+  text-align: center;
+}
+
+.iOS {
+  @include iOS;
+
+  background-color: var(--bgcolor);
+}
+
+.iOS.grey {
+  @include iOS;
+
+  background-color: var(--bgcolor-grey);
+}
+
+.iOS-title {
+  max-width: 517px;
+  min-height: 24px;
+  margin: 0 auto;
+  padding: 12px 15px 4px 15px;
+
+  text-align: left;
+  font-size: 22px;
+  font-weight: 500;
+
+  @media (min-width: 768px) {
+    min-height: 26px;
+    font-size: 24px;
+  }
+
+  .grey & {
+    max-width: unset;
+    padding-left: 30px;
+  }
+
+  & + & {
+    padding-top: 2px;
+  }
+}

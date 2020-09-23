@@ -1,0 +1,203 @@
+<template>
+  <!-- 列表头部文字 -->
+  <div v-if="header !== false" class="list-header">{{ header }}</div>
+  <div class="list-wrapper">
+    <template v-for="item in content" :key="item.text">
+      <template v-if="!item.hidden">
+        <div v-if="item.url" class="list" @click="navigate(item.url)">
+          <img v-if="item.icon" class="icon" :src="getIcon(item.icon)" />
+          <div class="text">{{ item.text }}</div>
+          <div class="desc">{{ item.desc }}</div>
+          <div class="access" />
+        </div>
+        <div v-else class="list">
+          <img v-if="item.icon" class="icon" :src="getIcon(item.icon)" />
+          <span class="text">{{ decode(item.text) }}</span>
+          <div class="desc">{{ item.desc }}</div>
+        </div>
+        <div class="divline" :class="{ icon: item.icon }" />
+      </template>
+    </template>
+  </div>
+  <div v-if="footer" class="list-footer">{{ footer }}</div>
+</template>
+
+<script lang="ts">
+import { defineComponent, PropType } from "vue";
+import { useRouter, useRoute } from "vue-router";
+import { ListComponentItemConfig } from "./typings";
+import { decode, getIcon } from "./utils";
+
+export default defineComponent({
+  name: "MpList",
+  props: {
+    header: { type: [String, Boolean] },
+    content: {
+      type: Array as PropType<ListComponentItemConfig[]>,
+      required: true,
+    },
+    footer: String,
+  },
+  setup() {
+    const router = useRouter();
+    const route = useRoute();
+    const navigate = (path: string): void => {
+      if (route.fullPath !== path) router.push(path);
+    };
+
+    return { decode, getIcon, navigate };
+  },
+});
+</script>
+
+<style lang="scss">
+@import "./style/hover";
+
+.list-header {
+  max-width: var(--max-width);
+  min-height: 36px;
+  margin: 0 var(--horizontal-margin);
+  padding: 12px 15px 4px 15px;
+
+  color: var(--text-color);
+  text-align: left;
+  font-size: 19px;
+  font-weight: 500;
+
+  .grey & {
+    padding: 21px 15px 5px 15px;
+    color: var(--dark-grey);
+    font-size: 13px;
+    font-weight: 400;
+  }
+}
+
+.list-footer {
+  max-width: var(--max-width);
+  min-height: 16px;
+  margin: 0 15px;
+  padding: 5px 15px 0 15px;
+
+  color: var(--dark-grey);
+  text-align: left;
+  font-size: 13px;
+}
+
+.list-wrapper {
+  position: relative;
+
+  max-width: var(--max-width);
+  margin: 0 var(--horizontal-margin);
+  background-color: var(--block-bgcolor);
+  border-radius: 8px;
+  overflow: hidden;
+
+  .list {
+    display: flex;
+    position: relative;
+
+    width: auto;
+    padding: 0 15px;
+    background-color: var(--block-bgcolor);
+    border: none !important;
+    border-radius: 0;
+
+    color: var(--text-color) !important;
+    font-size: 17px;
+    font-weight: normal;
+    line-height: 1.45;
+    align-items: center;
+
+    @include hover;
+
+    &:empty {
+      padding: 0;
+    }
+
+    .icon {
+      width: 30px;
+      height: 30px;
+      margin: 10px 10px 10px 0;
+    }
+
+    .text {
+      padding: 10px 0;
+
+      color: var(--text-color);
+      text-align: left;
+      line-height: 1.5;
+      word-break: break-word;
+      flex-grow: 1;
+    }
+
+    .desc {
+      max-width: 40%;
+
+      color: #8a8a8e;
+      text-align: right;
+      white-space: nowrap;
+      flex-shrink: 1;
+      overflow: hidden;
+
+      text-overflow: ellipsis;
+
+      @media (prefers-color-scheme: dark) {
+        color: #98989f;
+        text-align: right;
+      }
+    }
+
+    .access {
+      position: relative;
+      padding-right: 15px;
+
+      &::after {
+        content: " ";
+        display: inline-block;
+        position: absolute;
+        top: 50%;
+        right: 2px;
+
+        width: 7px;
+        height: 7px;
+        margin-top: -4px;
+        border-width: 2px 2px 0 0;
+        border-style: solid;
+        border-color: var(--arrow-color);
+        transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);
+      }
+    }
+  }
+
+  .divline {
+    position: relative;
+
+    &::after {
+      content: " ";
+      position: absolute;
+      left: 15px;
+      right: 0;
+      bottom: 0;
+
+      height: 1px;
+      border-bottom: 1px solid var(--border-color);
+      transform: scaleY(0.4);
+      transform-origin: 0 100%;
+    }
+
+    &.icon {
+      width: 100%;
+      height: 0;
+      margin: 0;
+
+      &::after {
+        left: 55px;
+      }
+    }
+
+    &:last-child::after {
+      display: none;
+    }
+  }
+}
+</style>

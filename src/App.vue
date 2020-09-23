@@ -21,12 +21,13 @@
       <BackToTop />
       <MyFooter id="footer" />
     </ALayout>
-    <!-- <base-viewer /> -->
+    <ImageViewer />
   </ALayout>
 </template>
 <script lang="ts">
 import { defineComponent } from "vue";
 import BackToTop from "#/BackToTop.vue";
+import ImageViewer from "#/ImageViewer.vue";
 import MyNav from "#/Nav.vue";
 import MyFooter from "#/Footer.vue";
 
@@ -34,6 +35,7 @@ export default defineComponent({
   name: "App",
   components: {
     BackToTop,
+    ImageViewer,
     MyNav,
     MyFooter,
   },

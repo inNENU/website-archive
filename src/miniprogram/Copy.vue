@@ -1,0 +1,86 @@
+<template>
+  <div v-if="header" class="copy-header">{{ header }}</div>
+  <div class="copy-wrapper">
+    <div class="copy" hover-class="button-hover" @click="copy">
+      <img class="icon" src="./icon/copy.svg" />
+    </div>
+    <div class="text">{{ text }}</div>
+  </div>
+</template>
+
+<script lang="ts">
+import { defineComponent } from "vue";
+import message from "%/message";
+export default defineComponent({
+  name: "MpCopy",
+  props: {
+    header: String,
+    text: { type: String, required: true },
+  },
+  setup() {
+    const copy = (): void => {
+      message.warn("浏览器不支持读写剪切板，请自行复制");
+    };
+
+    return { copy };
+  },
+});
+</script>
+
+<style lang="scss">
+.copy-header {
+  max-width: var(--max-width);
+  min-height: 36px;
+  margin: 0 var(--horizontal-margin);
+  padding: 12px 15px 4px 15px;
+
+  color: var(--text-color);
+  text-align: left;
+  font-size: 19px;
+  font-weight: 500;
+
+  .grey & {
+    padding: 21px 15px 5px 15px;
+    color: var(--dark-grey);
+    font-size: 13px;
+    font-weight: 400;
+  }
+}
+
+.copy-wrapper {
+  max-width: var(--max-width);
+  margin: 2px var(--horizontal-margin);
+  padding: 8px 10px 8px 15px;
+  background-color: var(--block-bgcolor);
+  border-radius: 8px;
+
+  color: var(--text-color);
+  line-height: 1.2;
+  overflow: hidden;
+
+  .text {
+    text-align: justify;
+    font-size: 17px;
+    word-break: break-all;
+
+    &::before {
+      content: " ";
+      display: inline-block;
+      vertical-align: middle;
+      min-height: 36px;
+    }
+
+    .copy {
+      float: right;
+      width: 20px;
+      height: 20px;
+      margin: 8px;
+
+      .icon {
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+}
+</style>

@@ -1,0 +1,33 @@
+@mixin NENU {
+  width: 100%;
+  min-height: 100%;
+  color: var(--text-color);
+}
+
+.NENU {
+  @include NENU;
+
+  background-color: var(--bgcolor);
+}
+
+.NENU.grey {
+  @include NENU;
+
+  background-color: #f0f0f0;
+
+  @media (prefers-color-scheme: dark) {
+    background-color: #0f0f0f;
+  }
+}
+
+.NENU-title {
+  min-height: 24px;
+  padding: 9px 15px 3px 15px;
+  font-size: 18px;
+  font-weight: 500;
+  text-align: left;
+
+  & + & {
+    padding-top: 2px;
+  }
+}
