@@ -124,7 +124,31 @@ module.exports = {
       .loader("vue-loader-v16")
       .end()
       .use("vue-svg-loader")
-      .loader("vue-svg-loader");
+      .loader("vue-svg-loader")
+      .options({
+        // 对svg进行处理
+        plugins: [
+          { removeDoctype: true },
+          { removeComments: true },
+          { removeViewBox: false },
+        ],
+        removeViewBox: false,
+      });
+  },
+  css: {
+    loaderOptions: {
+      // 向 CSS 相关的 loader 传递选项
+      less: {
+        lessOptions: {
+          // 自定义antd主题
+          modifyVars: {
+            "primary-color": "#2ecc71",
+            "link-color": "#2ecc71",
+          },
+          javascriptEnabled: true,
+        },
+      },
+    },
   },
   devServer: {
     compress: true, // 启用 gzip 压缩

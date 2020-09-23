@@ -1,4 +1,4 @@
-// import { ComponentOptions } from "vue";
+import { ComponentOptions } from "vue";
 import { RouteRecordRaw } from "vue-router";
 
 import Home from "@/views/Home.vue";
@@ -10,17 +10,43 @@ const routes: RouteRecordRaw[] = [
     name: "home",
     component: Home,
   },
-  // {
-  //   path: "/about",
-  //   name: "about",
-  //   /*
-  //    * 路由级别的代码分割
-  //    * this generates a separate chunk (about.[hash].js) for this route
-  //    * which is lazy-loaded when the route is visited.
-  //    */
-  //   component: (): ComponentOptions =>
-  //     import(/* webpackChunkName: "about" */ "@/views/About.vue"),
-  // },
+  {
+    path: "/guide",
+    name: "guide",
+    /*
+     * 路由级别的代码分割
+     * this generates a separate chunk (about.[hash].js) for this route
+     * which is lazy-loaded when the route is visited.
+     */
+    component: (): ComponentOptions =>
+      import(/* webpackChunkName: "miniprogram" */ "@/views/Page.vue"),
+  },
+  {
+    path: "/intro",
+    name: "guide",
+    /*
+     * 路由级别的代码分割
+     * this generates a separate chunk (about.[hash].js) for this route
+     * which is lazy-loaded when the route is visited.
+     */
+    component: (): ComponentOptions =>
+      import(/* webpackChunkName: "miniprogram" */ "@/views/Page.vue"),
+  },
+  {
+    path: "/guide/:folder+/:pageName",
+    component: (): ComponentOptions =>
+      import(/* webpackChunkName: "miniprogram" */ "@/views/Page.vue"),
+  },
+  {
+    path: "/intro/:folder+/:pageName",
+    component: (): ComponentOptions =>
+      import(/* webpackChunkName: "miniprogram" */ "@/views/Page.vue"),
+  },
+  {
+    path: "/other/:folder+/:pageName",
+    component: (): ComponentOptions =>
+      import(/* webpackChunkName: "miniprogram" */ "@/views/Page.vue"),
+  },
   {
     path: "/:pathMatch(.*)*",
     name: "404",

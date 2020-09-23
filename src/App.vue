@@ -1,37 +1,41 @@
 <template>
-  <a-layout id="app">
-    <!-- <a-layout hasSider="true" id="app"> -->
+  <ALayout id="app">
+    <!-- <ALayout hasSider="true" id="app"> -->
     <!-- <my-slide id="aside" v-if="$store.state.slide.list.length" /> -->
-    <a-layout id="body">
-      <!-- <my-nav id="nav" /> -->
-      <a-layout-content id="content">
+    <ALayout id="body">
+      <MyNav id="nav" />
+      <ALayout-content id="content">
         <RouterView v-slot="{ Component }">
-          <!-- <transition :name="transitionName"> -->
-          <keep-alive :max="10">
+          <!-- <Transition :name="transitionName"> -->
+          <KeepAlive :max="10">
             <component v-if="$route.meta.title === false" :is="Component" />
             <component
               v-else
               :is="Component"
               v-wechat-title="$route.meta.title || 'in 东师'"
             />
-          </keep-alive>
-          <!-- </transition> -->
+          </KeepAlive>
+          <!-- </Transition> -->
         </RouterView>
-      </a-layout-content>
-      <back-to-top />
-      <!-- <my-footer id="footer" /> -->
-    </a-layout>
+      </ALayout-content>
+      <BackToTop />
+      <MyFooter id="footer" />
+    </ALayout>
     <!-- <base-viewer /> -->
-  </a-layout>
+  </ALayout>
 </template>
 <script lang="ts">
 import { defineComponent } from "vue";
 import BackToTop from "#/BackToTop.vue";
+import MyNav from "#/Nav.vue";
+import MyFooter from "#/Footer.vue";
 
 export default defineComponent({
   name: "App",
   components: {
     BackToTop,
+    MyNav,
+    MyFooter,
   },
 });
 </script>

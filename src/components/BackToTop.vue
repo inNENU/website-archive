@@ -6,11 +6,11 @@
  * @LastEditTime: 2019-08-25 20:02:02
 -->
 <template>
-  <transition name="myfade">
-    <div @click="scrollTop" class="scrollTop" v-if="display">
+  <Transition name="myfade">
+    <div @click="scrollTop" class="back-to-top" v-if="display">
       <Icon :component="backTopSvg" style="font-size: 32px; margin: -1px" />
     </div>
-  </transition>
+  </Transition>
 </template>
 <script lang="ts">
 import { defineComponent, markRaw, onMounted, ref } from "vue";
@@ -33,7 +33,7 @@ export default defineComponent({
 
     // Make the website scroll to the top
     const scrollTop = (): void => {
-      let topDistance = getDistance();
+      const topDistance = getDistance();
 
       if (topDistance > 0) {
         window.requestAnimationFrame(scrollTop);
@@ -57,13 +57,13 @@ export default defineComponent({
 });
 </script>
 <style scoped>
-.scrollTop {
+.back-to-top {
   position: fixed;
   right: 20px;
   bottom: 80px;
   z-index: 3;
-  width: 36px;
-  height: 36px;
+  width: 30px;
+  height: 30px;
   background-color: #fff;
   border-radius: 50%;
 }
