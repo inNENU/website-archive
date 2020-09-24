@@ -1,10 +1,3 @@
-<!--
- * @Author: Mr.Hope
- * @Date: 2019-06-26 20:26:14
- * @LastEditors: Mr.Hope
- * @LastEditTime: 2019-08-25 21:14:40
- * @Description: 电话组件
--->
 <template>
   <div v-if="header" class="phone-header" v-text="header" />
   <div class="phone-wrapper">
@@ -15,7 +8,7 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import Phone from "./icon/phone.svg";
+import Phone from "../assets/phone.svg";
 
 export default defineComponent({
   components: { Phone },

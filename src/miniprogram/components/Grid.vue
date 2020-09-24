@@ -1,9 +1,6 @@
 <template>
-  <!-- 网格头部文字 -->
-  <div v-if="header !== false" class="grid-head">{{ header }}</div>
-  <!-- 网格主体 -->
+  <div v-if="header !== false" class="grid-head" v-text="header" />
   <div class="grid-wrapper">
-    <!-- 每个网格 -->
     <div
       v-for="item in content"
       :key="item.text"
@@ -12,17 +9,17 @@
       @click="navigate(item.url)"
     >
       <img v-if="item.icon" class="icon" :src="getIcon(item.icon)" />
-      <div class="text">{{ item.text }}</div>
-      <div class="name">{{ item.name }}</div>
+      <div class="text" v-text="item.text" />
+      <div class="name" v-text="item.name" />
     </div>
   </div>
-  <div v-if="footer" class="grid-foot">{{ footer }}</div>
+  <div v-if="footer" class="grid-foot" v-text="footer" />
 </template>
 
 <script lang="ts">
 import { defineComponent, PropType } from "vue";
-import { getIcon } from "./utils";
-import { GridComponentItemComfig } from "./typings";
+import { getIcon } from "@/miniprogram/utils";
+import { GridComponentItemComfig } from "@/miniprogram/typings";
 
 export default defineComponent({
   name: "BaseGrid",
@@ -41,7 +38,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-@import "./style/hover";
+@import "../style/hover";
 
 .grid-head {
   min-height: 36px;
@@ -89,8 +86,8 @@ export default defineComponent({
   font-size: 14px;
 }
 
-@import "./style/grid/Android";
-@import "./style/grid/iOS";
-@import "./style/grid/NENU";
-@import "./style/grid/weui";
+@import "../style/grid/Android";
+@import "../style/grid/iOS";
+@import "../style/grid/NENU";
+@import "../style/grid/weui";
 </style>

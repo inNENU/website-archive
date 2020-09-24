@@ -1,18 +1,20 @@
 import {
   AdvancedListComponentItemConfig,
+  ComponentConfig,
+  FooterComponentConfig,
   GridComponentItemComfig,
   ListComponentItemConfig,
   PageConfig,
 } from "../typings";
 
-export const decode = (text: string): string =>
-  text.replace(/\n/gu, "<br />").replace(/\s/gu, "&ensp;");
+export const decode = (text: string): string => text.replace(/\n/gu, "<br />");
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const getConfig = (config: Record<string, any>): Record<string, any> => {
-  const resolvedConfig = Object.assign({}, config);
+export const getConfig = (config: ComponentConfig): Record<string, any> => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const resolvedConfig: Record<string, any> = Object.assign({}, config);
 
-  if (resolvedConfig.style) {
+  if ("style" in resolvedConfig) {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     resolvedConfig.myStyle = resolvedConfig.style;
     delete resolvedConfig.style;
@@ -25,6 +27,18 @@ export const getConfig = (config: Record<string, any>): Record<string, any> => {
 
 export const getIcon = (icon: string): string =>
   `https://mp.innenu.com/res/icon/${icon}.svg`;
+
+export const getFooterConfig = (
+  config: PageConfig
+): Omit<FooterComponentConfig, "tag"> => {
+  const footerConfig: Omit<FooterComponentConfig, "tag"> = {};
+
+  if (config.desc) footerConfig.desc = config.desc;
+  if (config.author) footerConfig.author = config.author;
+  if (config.time) footerConfig.time = config.time;
+
+  return footerConfig;
+};
 
 /**
  * 获得界面数据，生成正确的界面数据

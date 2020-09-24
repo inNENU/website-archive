@@ -3,8 +3,8 @@
     <img class="background" :src="logo" />
     <div class="intro">
       <img class="icon" :src="logo" />
-      <div class="name">{{ name }}</div>
-      <div class="desc">{{ desc }}</div>
+      <div class="name" v-text="name" />
+      <div class="desc" v-text="desc" />
     </div>
   </div>
 </template>

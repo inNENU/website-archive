@@ -1,10 +1,3 @@
-<!--
- * @Author: Mr.Hope
- * @LastEditors: Mr.Hope
- * @Description: Base Image
- * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-08-25 21:11:18
--->
 <template>
   <div v-if="error" class="status-wrapper">
     <Error class="error" />
@@ -25,8 +18,8 @@
 
 <script lang="ts">
 import { defineComponent, onMounted, ref } from "vue";
-import Loading from "./icon/loading.svg";
-import Error from "./icon/error.svg";
+import Loading from "@/miniprogram/assets/loading.svg";
+import Error from "@/miniprogram/assets/error.svg";
 import { useStore } from "vuex";
 
 export default defineComponent({

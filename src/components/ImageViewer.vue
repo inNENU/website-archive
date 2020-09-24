@@ -1,21 +1,14 @@
-<!--
- * @Author: Mr.Hope
- * @Date: 2019-05-16 15:35:49
- * @LastEditors: Mr.Hope
- * @LastEditTime: 2019-08-25 21:19:17
- * @Description: Image Viewer
--->
 <template>
   <div ref="viewer">
     <template v-for="(item, index) in list">
       <img
+        v-if="typeof item === 'object'"
+        v-show="false"
         :alt="item.title"
         :key="`item${index}`"
         :src="item.url"
-        v-if="typeof item === 'object'"
-        v-show="false"
       />
-      <img :key="index" :src="item" v-else v-show="false" />
+      <img v-else v-show="false" :key="index" :src="item" />
     </template>
   </div>
 </template>

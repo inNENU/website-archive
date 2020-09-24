@@ -2,32 +2,36 @@
   <div class="container mp-page" :class="{ theme, grey }">
     <MpNavbar v-if="pageData.title" :title="pageData.title" />
     <component
-      :is="`mp-${item.tag}`"
-      :key="index"
-      v-bind="getConfig(item)"
       v-for="(item, index) in pageData.content"
+      :key="index"
+      :is="`mp-${item.tag}`"
+      v-bind="getConfig(item)"
+    />
+    <MpFooter
+      v-if="pageData.footer !== false"
+      v-bind="getFooterConfig(pageData)"
     />
   </div>
 </template>
 <script lang="ts">
 import { defineComponent, computed, ref, watch } from "vue";
 import { useStore } from "vuex";
-import MpCard from "./Card.vue";
-import MpCopy from "./Copy.vue";
-import MpDoc from "./Doc.vue";
-import MpFooter from "./Footer.vue";
-import MpGrid from "./Grid.vue";
-import MpImg from "./Img.vue";
-import MpIntro from "./Intro.vue";
-import MpList from "./List.vue";
-import MpMedia from "./Media.vue";
-import MpNavbar from "./Navbar.vue";
-import MpPhone from "./Phone.vue";
-import MpSwiper from "./Swiper.vue";
-import MpText from "./Text.vue";
-import MpTitle from "./Title.vue";
-import { getConfig, getPage } from "./utils";
-import { PageConfig } from "./typings";
+import MpCard from "../components/Card.vue";
+import MpCopy from "../components/Copy.vue";
+import MpDoc from "../components/Doc.vue";
+import MpFooter from "../components/Footer.vue";
+import MpGrid from "../components/Grid.vue";
+import MpImg from "../components/Img.vue";
+import MpIntro from "../components/Intro.vue";
+import MpList from "../components/List.vue";
+import MpMedia from "../components/Media.vue";
+import MpNavbar from "../components/Navbar.vue";
+import MpPhone from "../components/Phone.vue";
+import MpSwiper from "../components/Swiper.vue";
+import MpText from "../components/Text.vue";
+import MpTitle from "../components/Title.vue";
+import { getConfig, getFooterConfig, getPage } from "../utils";
+import { PageConfig } from "../typings";
 
 export default defineComponent({
   name: "MpPage",
@@ -69,12 +73,12 @@ export default defineComponent({
       store.commit("imageList", pageData.value.images);
     });
 
-    return { theme, grey, pageData, getConfig };
+    return { theme, grey, pageData, getConfig, getFooterConfig };
   },
 });
 </script>
 <style lang="scss" scoped>
-@import "./style/common";
-@import "./style/lib";
-@import "./style/theme";
+@import "../style/common";
+@import "../style/lib";
+@import "../style/theme";
 </style>

@@ -1,18 +1,21 @@
 <template>
-  <div v-if="header" class="copy-header">{{ header }}</div>
+  <div v-if="header" class="copy-header" v-text="header" />
   <div class="copy-wrapper">
-    <div class="copy" hover-class="button-hover" @click="copy">
-      <img class="icon" src="./icon/copy.svg" />
-    </div>
-    <div class="text">{{ text }}</div>
+    <Copy class="copy" @click="copy" />
+    <div class="text" v-text="text" />
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
 import message from "%/message";
+import Copy from "../assets/copy.svg";
+
 export default defineComponent({
   name: "MpCopy",
+  components: {
+    Copy,
+  },
   props: {
     header: String,
     text: { type: String, required: true },
@@ -28,6 +31,8 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
+@import "../style/hover";
+
 .copy-header {
   max-width: var(--max-width);
   min-height: 36px;
@@ -76,10 +81,7 @@ export default defineComponent({
       height: 20px;
       margin: 8px;
 
-      .icon {
-        width: 100%;
-        height: 100%;
-      }
+      @include hover;
     }
   }
 }

@@ -7,7 +7,7 @@
 import { defineComponent, ref } from "vue";
 import { onBeforeRouteUpdate, useRoute } from "vue-router";
 import axios from "axios";
-import MpPage from "@/miniprogram/Page.vue";
+import MpPage from "@/miniprogram/views/Page.vue";
 import { Modal } from "ant-design-vue";
 
 export default defineComponent({

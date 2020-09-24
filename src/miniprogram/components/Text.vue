@@ -33,7 +33,7 @@
 </template>
 <script lang="ts">
 import { defineComponent, PropType } from "vue";
-import { decode } from "./utils";
+import { decode } from "../utils";
 
 type TextType = "ol" | "ul" | "p" | "";
 

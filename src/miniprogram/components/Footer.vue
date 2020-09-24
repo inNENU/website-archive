@@ -1,19 +1,18 @@
 <template>
   <div class="footer-wrapper">
-    <span v-if="descText" decode>{{ descText }}</span>
+    <span v-if="desc" v-text="decode(desc)" />
     <div class="info">
-      <span v-if="authorText" decode>作者: {{ authorText }}</span>
-      <span v-if="timeText" decode>最后更新于: {{ timeText }}</span>
+      <span v-if="author" v-text="`作者: ${decode(author)}`" />
+      <span v-if="time" v-text="`最后更新于: ${decode(time)}`" />
     </div>
-
     <div class="footer">in 东师，就用 in 东师</div>
     <div class="copyright">Copyright © 2017-2020 HopeStudio</div>
   </div>
 </template>
 
 <script lang="ts">
-import { computed, defineComponent } from "vue";
-import { decode } from "./utils";
+import { defineComponent } from "vue";
+import { decode } from "@/miniprogram/utils";
 
 export default defineComponent({
   name: "MpFooter",
@@ -25,12 +24,8 @@ export default defineComponent({
     // Last edit time
     time: String,
   },
-  setup(props) {
-    const authorText = computed(() => decode(props.desc || ""));
-    const descText = computed(() => decode(props.author || ""));
-    const timeText = computed(() => decode(props.time || ""));
-
-    return { authorText, descText, timeText };
+  setup() {
+    return { decode };
   },
 });
 </script>

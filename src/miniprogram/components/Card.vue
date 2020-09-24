@@ -1,13 +1,13 @@
 <template>
-  <div class="card" hover-class="button-hover" @click="cardClick">
+  <div class="card" @click="cardClick">
     <img class="img" :src="src" />
     <div class="detail">
       <div v-if="logo" class="icon-wrapper">
         <img class="logo" :src="logo" />
-        <div class="name">{{ name }}</div>
+        <div class="name" v-text="name" />
       </div>
-      <div class="title">{{ title }}</div>
-      <div class="desc">{{ desc }}</div>
+      <div class="title" v-text="title" />
+      <div class="desc" v-text="desc" />
     </div>
   </div>
 </template>
@@ -39,7 +39,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-@import "./style/hover";
+@import "../style/hover";
 
 .card {
   max-width: 517px;

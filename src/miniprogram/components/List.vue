@@ -1,32 +1,31 @@
 <template>
-  <!-- 列表头部文字 -->
-  <div v-if="header !== false" class="list-header">{{ header }}</div>
+  <div v-if="header !== false" class="list-header" v-text="header" />
   <div class="list-wrapper">
     <template v-for="item in content" :key="item.text">
       <template v-if="!item.hidden">
         <div v-if="item.url" class="list" @click="navigate(item.url)">
           <img v-if="item.icon" class="icon" :src="getIcon(item.icon)" />
-          <div class="text">{{ item.text }}</div>
-          <div class="desc">{{ item.desc }}</div>
+          <div class="text" v-text="item.text" />
+          <div class="desc" v-text="item.desc" />
           <div class="access" />
         </div>
         <div v-else class="list">
           <img v-if="item.icon" class="icon" :src="getIcon(item.icon)" />
           <span class="text">{{ decode(item.text) }}</span>
-          <div class="desc">{{ item.desc }}</div>
+          <div class="desc" v-text="item.desc" />
         </div>
         <div class="divline" :class="{ icon: item.icon }" />
       </template>
     </template>
   </div>
-  <div v-if="footer" class="list-footer">{{ footer }}</div>
+  <div v-if="footer" class="list-footer" v-text="footer" />
 </template>
 
 <script lang="ts">
 import { defineComponent, PropType } from "vue";
 import { useRouter, useRoute } from "vue-router";
-import { ListComponentItemConfig } from "./typings";
-import { decode, getIcon } from "./utils";
+import { ListComponentItemConfig } from "../typings";
+import { decode, getIcon } from "../utils";
 
 export default defineComponent({
   name: "MpList",
@@ -51,7 +50,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-@import "./style/hover";
+@import "../style/hover";
 
 .list-header {
   max-width: var(--max-width);

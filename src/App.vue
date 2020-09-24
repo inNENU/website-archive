@@ -42,7 +42,6 @@ export default defineComponent({
 });
 </script>
 <style lang="scss">
-/* App.vue主布局 */
 #app {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
