@@ -3,8 +3,8 @@
     <component :is="icon" class="doc-icon" />
     <div class="name" v-text="name" />
     <template v-if="downloadable !== false">
-      <View v-if="icon === 'pdf'" class="view" @click="view" />
-      <Download v-else class="download" @click="view" />
+      <View v-if="icon === 'pdf'" class="view" @click.stop="view" />
+      <Download v-else class="download" @click.stop="view" />
     </template>
   </div>
 </template>
@@ -44,11 +44,9 @@ export default defineComponent({
     url: { type: String, required: true },
   },
   setup(props) {
-    const view = (event: Event): void => {
+    const view = (): void => {
       if (props.downloadable === false) message.warn("该文件不许查看");
       else window.open(props.url);
-
-      event.stopPropagation();
     };
 
     return { view };

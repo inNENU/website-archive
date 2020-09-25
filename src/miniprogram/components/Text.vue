@@ -40,10 +40,13 @@ type TextType = "ol" | "ul" | "p" | "";
 export default defineComponent({
   name: "MpText",
   props: {
-    type: String as PropType<TextType>,
-    heading: [String, Boolean],
+    type: { type: String as PropType<TextType>, default: "" },
+    heading: { type: [String, Boolean], default: "" },
     text: { type: Array as PropType<string[]>, default: (): string[] => [] },
-    myStyle: [String, Object] as PropType<string | Record<string, string>>,
+    myStyle: {
+      type: [String, Object] as PropType<string | Record<string, string>>,
+      default: "",
+    },
   },
   setup() {
     return {

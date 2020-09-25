@@ -13,7 +13,7 @@ import Phone from "../assets/phone.svg";
 export default defineComponent({
   components: { Phone },
   props: {
-    header: String,
+    header: { type: String, default: "" },
     // Telephone Number
     num: { type: [String, Number], required: true },
   },

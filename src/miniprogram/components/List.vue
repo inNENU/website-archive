@@ -30,12 +30,12 @@ import { decode, getIcon } from "../utils";
 export default defineComponent({
   name: "MpList",
   props: {
-    header: { type: [String, Boolean] },
+    header: { type: [String, Boolean], default: "" },
     content: {
       type: Array as PropType<ListComponentItemConfig[]>,
       required: true,
     },
-    footer: String,
+    footer: { type: String, default: "" },
   },
   setup() {
     const router = useRouter();

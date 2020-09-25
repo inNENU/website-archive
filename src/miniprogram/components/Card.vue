@@ -23,8 +23,8 @@ export default defineComponent({
     url: { type: String, required: true },
     name: { type: String, required: true },
     type: { type: String, default: "web" },
-    desc: String,
-    logo: String,
+    desc: { type: String, default: "" },
+    logo: { type: String, default: "" },
   },
   setup(props) {
     /** 点击卡片触发的操作 */

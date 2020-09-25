@@ -10,7 +10,10 @@ export default defineComponent({
     // Heading text
     text: { type: String, required: true },
     // Heading Style
-    myStyle: [String, Object] as PropType<string | Record<string, string>>,
+    myStyle: {
+      type: [String, Object] as PropType<string | Record<string, string>>,
+      default: "",
+    },
   },
 });
 </script>

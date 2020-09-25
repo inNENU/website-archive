@@ -17,7 +17,7 @@ export default defineComponent({
     Copy,
   },
   props: {
-    header: String,
+    header: { type: String, default: "" },
     text: { type: String, required: true },
   },
   setup() {

@@ -29,7 +29,7 @@ export default defineComponent({
       type: Array as PropType<GridComponentItemComfig[]>,
       required: true,
     },
-    footer: String,
+    footer: { type: String, default: "" },
   },
   setup() {
     return { getIcon };

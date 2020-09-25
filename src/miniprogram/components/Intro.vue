@@ -17,7 +17,7 @@ export default defineComponent({
   props: {
     name: { type: String, required: true },
     logo: { type: String, required: true },
-    desc: String,
+    desc: { type: String, default: "" },
   },
 });
 </script>

@@ -18,11 +18,11 @@ export default defineComponent({
   name: "MpFooter",
   props: {
     // Description text
-    desc: String,
+    desc: { type: String, default: "" },
     // Author information
     author: { type: String, default: "Mr.Hope" },
     // Last edit time
-    time: String,
+    time: { type: String, default: "" },
   },
   setup() {
     return { decode };

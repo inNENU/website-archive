@@ -1,26 +1,18 @@
-<!--
- * @Author: Mr.Hope
- * @LastEditors: Mr.Hope
- * @Description: BackTop Button
- * @Date: 2019-03-22 19:30:08
- * @LastEditTime: 2019-08-25 20:02:02
--->
 <template>
   <Transition name="myfade">
     <div @click="scrollTop" class="back-to-top" v-if="display">
-      <Icon :component="backTopSvg" style="font-size: 32px; margin: -1px" />
+      <BackTopSvg class="icon" />
     </div>
   </Transition>
 </template>
 <script lang="ts">
 import { defineComponent, markRaw, onMounted, ref } from "vue";
-import Icon from "@ant-design/icons-vue";
 import BackTopSvg from "|/icon/backToTop.svg";
 
 export default defineComponent({
   name: "BackToTop",
   components: {
-    Icon,
+    BackTopSvg,
   },
   setup() {
     const display = ref(false);
@@ -56,7 +48,7 @@ export default defineComponent({
   },
 });
 </script>
-<style scoped>
+<style lang="scss" scoped>
 .back-to-top {
   position: fixed;
   right: 20px;
@@ -66,5 +58,11 @@ export default defineComponent({
   height: 30px;
   background-color: #fff;
   border-radius: 50%;
+
+  .icon {
+    width: 32px;
+    height: 32px;
+    margin: -1px;
+  }
 }
 </style>
